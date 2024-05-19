@@ -13,11 +13,21 @@ positions = {
     'right': 22,
     'bottomleft': 27,
     'bottom': 31,
-   ' bottomright': 35,
+    'bottomright': 35,
 }
 
 #game loop
 while not game_over:
+
+    #player 1 character selection
+    if player_1_character == "":
+        player_1_character = input("Player 1, would you like to be 'x' or 'o'?").lower()
+        player_2_character = "o" if player_1_character == "x" else "x"
+
+    #determine who's turn it is
+    current_player = "Player 1" if board.count(player_1_character) <= board.count(player_2_character) else "Player 2"
+    
+
     #display current game board
     print(board)
 
@@ -33,6 +43,6 @@ while not game_over:
     position_to_insert = positions[action]
 
     #update board
-    board = board[:position_to_insert] + "x" + board[position_to_insert + 1:]
+    board = board[:position_to_insert] + player_1_character + board[position_to_insert + 1:]
     
 print("Game Over")
