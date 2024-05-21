@@ -15,24 +15,28 @@ positions = {
     'bottom': 31,
     'bottomright': 35,
 }
+#turn counter
+turn = 1
 
 #game loop
 while not game_over:
-
     #player 1 character selection
     if player_1_character == "":
         player_1_character = input("Player 1, would you like to be 'x' or 'o'?").lower()
         player_2_character = "o" if player_1_character == "x" else "x"
-
-    #determine who's turn it is
-    current_player = "Player 1" if board.count(player_1_character) <= board.count(player_2_character) else "Player 2"
     
+
 
     #display current game board
     print(board)
 
     #get player input
-    action = input("Where would you like to go?").lower()
+    if turn % 2 == 0:
+        action = input("Player 2, where would you like to go?").lower()
+        turn += 1
+    else:
+        action = input("Player 1, where would you like to go?").lower()
+        turn += 1
 
     #validate input position
     if action not in positions:
