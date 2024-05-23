@@ -41,6 +41,10 @@ while not game_over:
     #player 1 character selection
     if player_1_character == "":
         player_1_character = input("Player 1, would you like to be 'x' or 'o'?").lower()
+        if player_1_character != "x" and player_1_character != "o":
+            print("Invalid character. Please enter 'x' or 'o'")
+            player_1_character = ""
+            continue
         player_2_character = "o" if player_1_character == "x" else "x"
     
     #display current game board
@@ -55,8 +59,8 @@ while not game_over:
         turn += 1
 
     #validate input position
-    if action not in positions:
-        print('Invalid input. Please enter, "topleft, top, topright, left, middle, right, bottomleft, bottom, bottomright')
+    if action not in positions or board[positions[action]] != " ":
+        print('Invalid input or space taken. Please enter, "topleft, top, topright, left, middle, right, bottomleft, bottom, bottomright')
         turn -= 1
         continue
 
